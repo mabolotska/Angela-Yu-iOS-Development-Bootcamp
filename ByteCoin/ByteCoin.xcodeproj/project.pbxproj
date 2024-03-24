@@ -13,6 +13,10 @@
 		D0B232D82BAEB76000418831 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D0B232D72BAEB76000418831 /* Base */; };
 		D0B232DA2BAEB76300418831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B232D92BAEB76300418831 /* Assets.xcassets */; };
 		D0B232DD2BAEB76300418831 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D0B232DC2BAEB76300418831 /* Base */; };
+		D0B232F52BB074AB00418831 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B232F42BB074AB00418831 /* CoinManager.swift */; };
+		D0B232FA2BB089C000418831 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0B232F92BB089C000418831 /* SnapKit */; };
+		D0B232FC2BB089C000418831 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D0B232FB2BB089C000418831 /* SnapKit-Dynamic */; };
+		D0B232FE2BB0975700418831 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B232FD2BB0975700418831 /* CoinModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,8 @@
 		D0B232D92BAEB76300418831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0B232DC2BAEB76300418831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0B232DE2BAEB76300418831 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0B232F42BB074AB00418831 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
+		D0B232FD2BB0975700418831 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B232FA2BB089C000418831 /* SnapKit in Frameworks */,
+				D0B232FC2BB089C000418831 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +64,10 @@
 		D0B232CF2BAEB76000418831 /* ByteCoin */ = {
 			isa = PBXGroup;
 			children = (
+				D0B232F72BB074BE00418831 /* View */,
+				D0B232F62BB074B000418831 /* Controller */,
+				D0B232F32BB0749C00418831 /* Model */,
 				D0B232E42BAEB7A500418831 /* Application */,
-				D0B232D42BAEB76000418831 /* ViewController.swift */,
 				D0B232D62BAEB76000418831 /* Main.storyboard */,
 				D0B232D92BAEB76300418831 /* Assets.xcassets */,
 				D0B232DE2BAEB76300418831 /* Info.plist */,
@@ -73,6 +83,30 @@
 				D0B232D22BAEB76000418831 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		D0B232F32BB0749C00418831 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0B232F42BB074AB00418831 /* CoinManager.swift */,
+				D0B232FD2BB0975700418831 /* CoinModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D0B232F62BB074B000418831 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D0B232D42BAEB76000418831 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D0B232F72BB074BE00418831 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +125,10 @@
 			dependencies = (
 			);
 			name = ByteCoin;
+			packageProductDependencies = (
+				D0B232F92BB089C000418831 /* SnapKit */,
+				D0B232FB2BB089C000418831 /* SnapKit-Dynamic */,
+			);
 			productName = ByteCoin;
 			productReference = D0B232CD2BAEB76000418831 /* ByteCoin.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +157,9 @@
 				Base,
 			);
 			mainGroup = D0B232C42BAEB76000418831;
+			packageReferences = (
+				D0B232F82BB089C000418831 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = D0B232CE2BAEB76000418831 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -146,6 +187,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B232FE2BB0975700418831 /* CoinModel.swift in Sources */,
+				D0B232F52BB074AB00418831 /* CoinManager.swift in Sources */,
 				D0B232D52BAEB76000418831 /* ViewController.swift in Sources */,
 				D0B232D12BAEB76000418831 /* AppDelegate.swift in Sources */,
 				D0B232D32BAEB76000418831 /* SceneDelegate.swift in Sources */,
@@ -371,6 +414,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0B232F82BB089C000418831 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0B232F92BB089C000418831 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0B232F82BB089C000418831 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D0B232FB2BB089C000418831 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0B232F82BB089C000418831 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D0B232C52BAEB76000418831 /* Project object */;
 }
