@@ -17,6 +17,7 @@
 		D0B232FA2BB089C000418831 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0B232F92BB089C000418831 /* SnapKit */; };
 		D0B232FC2BB089C000418831 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = D0B232FB2BB089C000418831 /* SnapKit-Dynamic */; };
 		D0B232FE2BB0975700418831 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B232FD2BB0975700418831 /* CoinModel.swift */; };
+		D0B233022BB17B4C00418831 /* MVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B233012BB17B4C00418831 /* MVVMViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D0B232DE2BAEB76300418831 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0B232F42BB074AB00418831 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
 		D0B232FD2BB0975700418831 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		D0B233012BB17B4C00418831 /* MVVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				D0B232D42BAEB76000418831 /* ViewController.swift */,
+				D0B233012BB17B4C00418831 /* MVVMViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B232FE2BB0975700418831 /* CoinModel.swift in Sources */,
+				D0B233022BB17B4C00418831 /* MVVMViewController.swift in Sources */,
 				D0B232F52BB074AB00418831 /* CoinManager.swift in Sources */,
 				D0B232D52BAEB76000418831 /* ViewController.swift in Sources */,
 				D0B232D12BAEB76000418831 /* AppDelegate.swift in Sources */,

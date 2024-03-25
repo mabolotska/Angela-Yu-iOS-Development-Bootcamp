@@ -8,16 +8,18 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
-    let coinManager = CoinManager()
+class SimpleViewController: UIViewController, CoinManagerDelegate {
+    var coinManager = CoinManager()
     private let mainView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1
         return view
     }()
     private let bitcoinLabel: UILabel = {
         let label = UILabel()
-        
+        label.textColor = .white
         return label
     }()
     private let bitImage: UIImageView = {
@@ -34,10 +36,22 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "ByteCoin"
         let myColor = UIColor(named: "Background Color") ?? UIColor.red
         view.backgroundColor = myColor
+        coinManager.delegate = self
         setupUI()
+        bitcoinLabel.text = "Get the price"
+    }
+    //delegate methods. it is obligatory to use model not for JSON, because I need to transfer data to label:
+    func didUpdatePrice(model: CoinModelLocal) {
+        DispatchQueue.main.async {
+            self.bitcoinLabel.text = String(model.rate ?? 0)
+        }
+    }
+    
+    func didFailWithError(error: any Error) {
+        print(error)
     }
     
     func setupUI() {
@@ -48,6 +62,7 @@ class ViewController: UIViewController {
         
         mainView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(70)
             
         }
         bitImage.snp.makeConstraints { make in
@@ -67,7 +82,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension SimpleViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
@@ -83,7 +98,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManager.currencyArray[row]
         coinManager.getCoinPrice(currency: selectedCurrency)
-   
+
     }
     
 }
