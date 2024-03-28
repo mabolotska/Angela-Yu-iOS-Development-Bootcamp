@@ -6,8 +6,11 @@
 //
 
 import UIKit
+protocol WelcomeVCProtocol: AnyObject {
+    
+}
 
-class ViewController: UIViewController {
+class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,4 +19,3 @@ class ViewController: UIViewController {
 
 
 }
-
