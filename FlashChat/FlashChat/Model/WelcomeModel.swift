@@ -8,6 +8,8 @@
 import Foundation
 
 struct WelcomeModel {
-    let loginText: String
-    let registerText: String
+    var mainLabelText: String {
+        return K.appName
+    }
+
 }
