@@ -12,4 +12,9 @@ The app will give you the latest Bitcoin prices in all the popular, traded curre
 
 ![VictorinaPR](https://i.postimg.cc/zDs5Lrxj/2019-09-17-16-10-30-293cc192b1166fd33fec89153b5e8f40.gif)
 
+# Flash Chat
 
+Flash Chat is an internet based messaging app similar to WhatsApp. Here will be using a service called Firebase Firestore as a backend database to store and retrieve our messages from the cloud.
+
+
+![VictorinaPR](https://github.com/londonappbrewery/Images/blob/master/Flash%20Chat.gif)
