@@ -7,6 +7,10 @@
 
 import UIKit
 import SnapKit
+import GhostTypewriter
+import Firebase
+import FirebaseAuth
+
 
 protocol WelcomeVCProtocol: AnyObject {
     func updateLabel(label: String)
@@ -16,8 +20,8 @@ class WelcomeViewController: UIViewController, WelcomeVCProtocol {
     var presenter: WelcomePresenter!
   
     
-    let flashLabel: UILabel = {
-        let label = UILabel()
+    let flashLabel: TypewriterLabel = {
+        let label = TypewriterLabel()
         label.font = UIFont.systemFont(ofSize: 28)
         return label
     }()
@@ -47,6 +51,8 @@ class WelcomeViewController: UIViewController, WelcomeVCProtocol {
         presenter.viewDidLoad()
         regButton.addTarget(self, action: #selector(regButtonTapped), for: .touchUpInside)
         logButton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
+        flashLabel.startTypewritingAnimation()
+        flashLabel.typingTimeInterval = 1
     }
     
     func setupViews() {
@@ -57,6 +63,8 @@ class WelcomeViewController: UIViewController, WelcomeVCProtocol {
     }
 
     @objc func regButtonTapped() {
+       
+        
         let vc = RegisterViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

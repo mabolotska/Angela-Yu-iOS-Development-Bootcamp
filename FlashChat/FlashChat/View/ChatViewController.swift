@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol ChatViewControllerProtocol: AnyObject {
     func reloadTableView()
@@ -18,15 +19,6 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
     var presenter: ChatPresenter!
     var model = ChatModel()
     
-//    required init(presenter: ChatPresenter!, model: ChatModel) {
-//        
-//        self.presenter = presenter
-//        self.model = model
-//     
-//    }
-    
-
-  
     
     private let purpleView: UIView = {
         let view = UIView()
@@ -39,7 +31,7 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
     private let messageTF: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "  Write a message"
-        textfield.layer.cornerRadius = 5
+        textfield.layer.cornerRadius = 20
         textfield.backgroundColor = .white
         return textfield
     }()
@@ -53,12 +45,18 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor(named: K.BrandColors.purple)
         presenter = ChatPresenter(viewController: self, model: model)
+        presenter.viewDidLoad()
         configureTableView()
         setViews()
         setupUI()
+        navigationItem.hidesBackButton = true
+        
     }
+    
+  
     
     func setViews() {
         [tableView, purpleView].forEach {view.addSubview($0)}
@@ -70,18 +68,22 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
         exitButton.tintColor = .white
         navigationItem.rightBarButtonItem = exitButton
  //       exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(purpleView.snp.top)
+        }
         
         purpleView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(70)
+            make.height.equalTo(80)
             make.bottom.equalToSuperview()
         }
         messageTF.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(40)
-            make.width.equalTo(230)
-            make.height.equalTo(50)
+            make.width.equalTo(240)
+            make.height.equalTo(40)
         }
         sendButton.snp.makeConstraints { make in
             make.centerY.equalTo(messageTF)
@@ -89,7 +91,7 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
         }
     }
     func reloadTableView() {
-        
+        tableView.reloadData()
     }
     
     func configureTableView() {
@@ -98,9 +100,18 @@ class ChatViewController: UIViewController, ChatViewControllerProtocol {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatCell.self, forCellReuseIdentifier: ChatCell.reuseID)
+        tableView.backgroundColor = .white
     }
     
     @objc func exitButtonTapped() {
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+                navigationController?.popViewController(animated: true)
+                
+            } catch let signOutError as NSError {
+                print(signOutError)
+            }
         
     }
 }
@@ -112,8 +123,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseID) as! ChatCell
-//       let bookmark = presenter.getBookmark(at: indexPath.row)
-//        cell.set(info: bookmark)
+       let message = presenter.getMessage(at: indexPath.row)
+        cell.set(info: message)
         return cell
     }
     

@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol RegisterViewControllerProtocol {
     //it shows real actions
     func updatePlaceHolders(email: String, pass: String)
+    func showLoading()
+    func hideLoading()
+    func showError(message: String)
+    func navigateToVC()
 }
 
 class RegisterViewController: UIViewController, RegisterViewControllerProtocol, UITextFieldDelegate {
@@ -44,14 +49,14 @@ class RegisterViewController: UIViewController, RegisterViewControllerProtocol, 
        
         return textfield
     }()
-    private let logBUtton: UIButton = {
+    private let regButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.setTitleColor(UIColor(named: "BrandBlue"), for: .normal)
         return button
     }()
-    
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +67,28 @@ class RegisterViewController: UIViewController, RegisterViewControllerProtocol, 
         emailTF.delegate = self
         passTF.delegate = self
         setupUI()
+        regButton.addTarget(self, action: #selector(regButtonTapped), for: .touchUpInside)
+    }
+    @objc func regButtonTapped() {
+        guard let email = emailTF.text, !email.isEmpty,
+              let password = passTF.text, !password.isEmpty else {
+            showError(message: "Please enter both username and password")
+            return
+        }
+        presenter.authenticate(email: email, password: password)
     }
     
     func setupViews() {
 
-        [imageTF, imageTFTwo, logBUtton].forEach { view.addSubview($0) }
+        [imageTF, imageTFTwo, regButton].forEach { view.addSubview($0) }
         imageTF.addSubview(emailTF)
         imageTFTwo.addSubview(passTF)
+        view.addSubview(activityIndicator)
     }
 
     func setupUI() {
-   
+        activityIndicator.center = view.center
+        
         
         imageTF.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -99,7 +115,7 @@ class RegisterViewController: UIViewController, RegisterViewControllerProtocol, 
             make.top.equalToSuperview().offset(25)
  
         }
-        logBUtton.snp.makeConstraints { make in
+        regButton.snp.makeConstraints { make in
             make.top.equalTo(imageTFTwo.snp.bottom)
             make.centerX.equalToSuperview()
             make.height.equalTo(90)
@@ -109,6 +125,26 @@ class RegisterViewController: UIViewController, RegisterViewControllerProtocol, 
     func updatePlaceHolders(email: String, pass: String) {
         emailTF.placeholder = email
         passTF.placeholder = pass
+    }
+    
+    func showLoading() {
+    activityIndicator.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func showError(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+          let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+          alertController.addAction(okAction)
+          present(alertController, animated: true, completion: nil)
+    }
+    
+    func navigateToVC() {
+        let vc = ChatViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

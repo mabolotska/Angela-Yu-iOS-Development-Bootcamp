@@ -10,11 +10,12 @@ import Foundation
 protocol ChatPresenterProtocol: AnyObject {
     var messageCount: Int { get }
     func viewDidLoad()
+    func getMessage(at index: Int) -> Message 
     
 }
 
 class ChatPresenter: ChatPresenterProtocol {
-  
+    var messages: [Message] = []
     
     weak private var viewController: ChatViewController?
     var model: ChatModel
@@ -25,10 +26,15 @@ class ChatPresenter: ChatPresenterProtocol {
     }
     
     var messageCount: Int {
-        return 1
+        return messages.count
+    }
+    
+    func getMessage(at index: Int) -> Message {
+        return messages[index]
     }
     
     func viewDidLoad() {
-        
+        messages =     [Message(body: "Hey", sender: "John"),
+        Message(body: "Hey", sender: "Adam")]
     }
 }
