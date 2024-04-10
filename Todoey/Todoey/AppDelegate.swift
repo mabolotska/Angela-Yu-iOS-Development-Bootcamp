@@ -1,33 +1,21 @@
 //
 //  AppDelegate.swift
-//  FlashChat
+//  Todoey
 //
-//  Created by Maryna Bolotska on 25/03/24.
+//  Created by Maryna Bolotska on 10/04/24.
 //
 
 import UIKit
-import FirebaseCore
-import FirebaseFirestore
-
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
-    func application(_ application: UIApplication,
-
-       didFinishLaunchingWithOptions launchOptions:
-
-                     [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-       FirebaseApp.configure()
-        let db = Firestore.firestore()
-  
-       return true
-
-     }
-
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
 
     // MARK: UISceneSession Lifecycle
 

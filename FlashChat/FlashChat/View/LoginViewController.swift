@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol LoginViewControllerProtocol: AnyObject {
     //it shows real actions
     func updatePlaceHolders(email: String, pass: String)
+    func showLoading()
+    func hideLoading()
+    func showError(message: String)
+    func navigateToVC()
 }
 
 class LoginViewController: UIViewController, LoginViewControllerProtocol, UITextFieldDelegate {
@@ -33,13 +38,12 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol, UIText
     
     private let emailTF: UITextField = {
         let textfield = UITextField()
-   //     textfield.placeholder = "Email"
-    
+        textfield.text = "1@2.com"
         return textfield
     }()
     private let passTF: UITextField = {
         let textfield = UITextField()
-    //    textfield.placeholder = "Password"
+        textfield.text = "123456"
         textfield.isSecureTextEntry = true
        
         return textfield
@@ -50,7 +54,7 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol, UIText
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         return button
     }()
-    
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +66,35 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol, UIText
         passTF.delegate = self
         setupUI()
         logBUtton.addTarget(self, action: #selector(logButtonTapped), for: .touchUpInside)
+        
     }
     
     @objc func logButtonTapped() {
-        let vc = ChatViewController()
-        navigationController?.pushViewController(vc, animated: true)
+//        guard let password = passTF.text else { return }
+//        guard let email = emailTF.text else { return }
+//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+//            guard let strongSelf = self else { return }
+//            
+//            if let error = error {
+//                print(error)
+//            }
+//            else {
+//                let vc = ChatViewController()
+//                strongSelf.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            
+//        }
+        guard let email = emailTF.text, !email.isEmpty,
+              let password = passTF.text, !password.isEmpty else {
+            showError(message: "Please enter both username and password")
+            return
+        }
+        presenter.authenticate(email: email, password: password)
+        
     }
+    
+  
+    
     func setupViews() {
 
         [imageTF, imageTFTwo, logBUtton].forEach { view.addSubview($0) }
@@ -113,5 +140,26 @@ class LoginViewController: UIViewController, LoginViewControllerProtocol, UIText
     func updatePlaceHolders(email: String, pass: String) {
         emailTF.placeholder = email
         passTF.placeholder = pass
+    }
+    
+    
+    func showLoading() {
+    activityIndicator.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func showError(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+          let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+          alertController.addAction(okAction)
+          present(alertController, animated: true, completion: nil)
+    }
+    
+    func navigateToVC() {
+        let vc = ChatViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

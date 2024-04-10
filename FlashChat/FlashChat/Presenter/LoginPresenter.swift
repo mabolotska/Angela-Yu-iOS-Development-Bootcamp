@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol LoginPresenterProtocol {
     func viewDidLoad()
+    func authenticate(email: String, password: String)
 }
 
 class LoginPresenter: LoginPresenterProtocol {
@@ -24,5 +26,21 @@ class LoginPresenter: LoginPresenterProtocol {
         viewcontroller?.updatePlaceHolders(email: model.emailText, pass: model.passText)
     }
     
-    
+    func authenticate(email: String, password: String) {
+        viewcontroller?.showLoading()
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                // An error occurred during authentication
+                strongSelf.viewcontroller?.hideLoading()
+                strongSelf.viewcontroller?.showError(message: error.localizedDescription)
+            } else {
+                // Authentication succeeded
+                strongSelf.viewcontroller?.hideLoading()
+                strongSelf.viewcontroller?.navigateToVC()
+            }
+        }
+    }
 }
