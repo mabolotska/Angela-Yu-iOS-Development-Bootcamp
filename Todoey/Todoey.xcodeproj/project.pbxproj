@@ -19,6 +19,7 @@
 		D02AE75A2BC7444C002EB115 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7592BC7444C002EB115 /* HomeViewModel.swift */; };
 		D02AE7622BC74CF6002EB115 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7612BC74CF6002EB115 /* HomeTableViewCell.swift */; };
 		D02AE7662BC7B75A002EB115 /* Ext+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7652BC7B75A002EB115 /* Ext+UILabel.swift */; };
+		D070257B2BC937E600B6AF5C /* CoreDataItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D02AE7592BC7444C002EB115 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D02AE7612BC74CF6002EB115 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D02AE7652BC7B75A002EB115 /* Ext+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+UILabel.swift"; sourceTree = "<group>"; };
+		D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataItem.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				D02AE73C2BC73707002EB115 /* SceneDelegate.swift */,
 				D02AE73A2BC73707002EB115 /* AppDelegate.swift */,
+				D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */,
 				D02AE7402BC73707002EB115 /* Main.storyboard */,
 			);
 			path = Application;
@@ -206,6 +209,7 @@
 				D02AE7662BC7B75A002EB115 /* Ext+UILabel.swift in Sources */,
 				D02AE7622BC74CF6002EB115 /* HomeTableViewCell.swift in Sources */,
 				D02AE7582BC74426002EB115 /* Item.swift in Sources */,
+				D070257B2BC937E600B6AF5C /* CoreDataItem.xcdatamodeld in Sources */,
 				D02AE73F2BC73707002EB115 /* HomeViewController.swift in Sources */,
 				D02AE73B2BC73707002EB115 /* AppDelegate.swift in Sources */,
 				D02AE75A2BC7444C002EB115 /* HomeViewModel.swift in Sources */,
@@ -476,6 +480,20 @@
 			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */,
+			);
+			currentVersion = D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */;
+			name = CoreDataItem.xcdatamodeld;
+			path = "/Volumes/Media/Xcode/Angela-Yu-iOS-Development-Bootcamp/Todoey/Todoey/Application/CoreDataItem.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D02AE72F2BC73707002EB115 /* Project object */;
 }
