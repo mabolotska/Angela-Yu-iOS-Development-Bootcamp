@@ -7,6 +7,11 @@
 
 import Foundation
 
-struct Item {
-    let name: String
+struct Item: Codable {
+    var name: String = ""
+    var done: Bool = false
+
+    init(_ name: String) {
+        self.name = name
+       }
 }

@@ -14,14 +14,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set navbar color in appdelegate
+        // set navbar color in appdelegate
       //  navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange]
         view.backgroundColor = .white
         title = "Todoey"
         setViews()
         setupUI()
         configureTableView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "add"), style: .done, target: self, action: #selector(addButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(addButtonPressed))
+        viewModel.loadItems()
     }
     @objc func addButtonPressed() {
         var textField = UITextField()
@@ -29,8 +30,10 @@ class HomeViewController: UIViewController {
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            //what will happen once the user clicks the Add Item button on our UIAlert
-            
+            self.viewModel.items.append(Item(textField.text!))
+                        self.viewModel.saveItems()
+                        self.tableView.reloadData()
+
             
 //            let newItem = Item(context: self.context)
 //            newItem.title = textField.text!
@@ -81,10 +84,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier) as? HomeTableViewCell else { return UITableViewCell() }
         let item = viewModel.items[indexPath.row]
         cell.set(model: item)
+        cell.accessoryType = viewModel.items[indexPath.row].done ? .checkmark : .none
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//                   tableView.cellForRow(at: indexPath)?.accessoryType = .none }
+//               else {
+//                   tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//               }
+
+
+               tableView.deselectRow(at: indexPath, animated: true)
   //      cell.accessoryType = item.done ? .checkmark : .none
         return cell
     }
   
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.items[indexPath.row].done = !viewModel.items[indexPath.row].done
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.saveItems()
+        tableView.reloadData()
+    }
 }
-
-
