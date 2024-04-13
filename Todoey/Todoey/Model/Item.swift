@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Item: Codable {
-    var name: String = ""
-    var done: Bool = false
-
-    init(_ name: String) {
-        self.name = name
-       }
-}
+//struct Item: Codable {
+//    var name: String = ""
+//    var done: Bool = false
+//
+//    init(_ name: String) {
+//        self.name = name
+//       }
+//}
