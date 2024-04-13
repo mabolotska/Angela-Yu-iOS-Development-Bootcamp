@@ -19,7 +19,12 @@
 		D02AE75A2BC7444C002EB115 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7592BC7444C002EB115 /* HomeViewModel.swift */; };
 		D02AE7622BC74CF6002EB115 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7612BC74CF6002EB115 /* HomeTableViewCell.swift */; };
 		D02AE7662BC7B75A002EB115 /* Ext+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AE7652BC7B75A002EB115 /* Ext+UILabel.swift */; };
-		D070257B2BC937E600B6AF5C /* CoreDataItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */; };
+		D070257D2BCA60FD00B6AF5C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070257C2BCA60FD00B6AF5C /* CategoryViewController.swift */; };
+		D070257F2BCA612E00B6AF5C /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070257E2BCA612E00B6AF5C /* CategoryViewModel.swift */; };
+		D07025812BCA6F0A00B6AF5C /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07025802BCA6F0A00B6AF5C /* CategoryTableViewCell.swift */; };
+		D07025842BCA7CC900B6AF5C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D07025832BCA7CC900B6AF5C /* Realm */; };
+		D07025862BCA7CC900B6AF5C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D07025852BCA7CC900B6AF5C /* RealmSwift */; };
+		D07025882BCA7E7200B6AF5C /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07025872BCA7E7100B6AF5C /* RealmData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +40,10 @@
 		D02AE7592BC7444C002EB115 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D02AE7612BC74CF6002EB115 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		D02AE7652BC7B75A002EB115 /* Ext+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+UILabel.swift"; sourceTree = "<group>"; };
-		D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataItem.xcdatamodel; sourceTree = "<group>"; };
+		D070257C2BCA60FD00B6AF5C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		D070257E2BCA612E00B6AF5C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		D07025802BCA6F0A00B6AF5C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		D07025872BCA7E7100B6AF5C /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07025862BCA7CC900B6AF5C /* RealmSwift in Frameworks */,
+				D07025842BCA7CC900B6AF5C /* Realm in Frameworks */,
 				D02AE7502BC741DB002EB115 /* SnapKit in Frameworks */,
 				D02AE7522BC741DB002EB115 /* SnapKit-Dynamic in Frameworks */,
 			);
@@ -87,6 +97,7 @@
 			children = (
 				D02AE75E2BC74BF8002EB115 /* Cells */,
 				D02AE73E2BC73707002EB115 /* HomeViewController.swift */,
+				D070257C2BCA60FD00B6AF5C /* CategoryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				D02AE7592BC7444C002EB115 /* HomeViewModel.swift */,
+				D070257E2BCA612E00B6AF5C /* CategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -103,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				D02AE7572BC74426002EB115 /* Item.swift */,
+				D07025872BCA7E7100B6AF5C /* RealmData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,7 +125,6 @@
 			children = (
 				D02AE73C2BC73707002EB115 /* SceneDelegate.swift */,
 				D02AE73A2BC73707002EB115 /* AppDelegate.swift */,
-				D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */,
 				D02AE7402BC73707002EB115 /* Main.storyboard */,
 			);
 			path = Application;
@@ -122,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				D02AE7612BC74CF6002EB115 /* HomeTableViewCell.swift */,
+				D07025802BCA6F0A00B6AF5C /* CategoryTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -146,6 +159,8 @@
 			packageProductDependencies = (
 				D02AE74F2BC741DB002EB115 /* SnapKit */,
 				D02AE7512BC741DB002EB115 /* SnapKit-Dynamic */,
+				D07025832BCA7CC900B6AF5C /* Realm */,
+				D07025852BCA7CC900B6AF5C /* RealmSwift */,
 			);
 			productName = Todoey;
 			productReference = D02AE7372BC73707002EB115 /* Todoey.app */;
@@ -178,6 +193,7 @@
 			packageReferences = (
 				D02AE74E2BC741DB002EB115 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				D02AE75B2BC74BAA002EB115 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				D07025822BCA7CC900B6AF5C /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = D02AE7382BC73707002EB115 /* Products */;
 			projectDirPath = "";
@@ -207,12 +223,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D02AE7662BC7B75A002EB115 /* Ext+UILabel.swift in Sources */,
+				D07025882BCA7E7200B6AF5C /* RealmData.swift in Sources */,
 				D02AE7622BC74CF6002EB115 /* HomeTableViewCell.swift in Sources */,
+				D070257F2BCA612E00B6AF5C /* CategoryViewModel.swift in Sources */,
 				D02AE7582BC74426002EB115 /* Item.swift in Sources */,
-				D070257B2BC937E600B6AF5C /* CoreDataItem.xcdatamodeld in Sources */,
 				D02AE73F2BC73707002EB115 /* HomeViewController.swift in Sources */,
+				D07025812BCA6F0A00B6AF5C /* CategoryTableViewCell.swift in Sources */,
 				D02AE73B2BC73707002EB115 /* AppDelegate.swift in Sources */,
 				D02AE75A2BC7444C002EB115 /* HomeViewModel.swift in Sources */,
+				D070257D2BCA60FD00B6AF5C /* CategoryViewController.swift in Sources */,
 				D02AE73D2BC73707002EB115 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +480,14 @@
 				minimumVersion = 0.54.0;
 			};
 		};
+		D07025822BCA7CC900B6AF5C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -479,21 +506,17 @@
 			package = D02AE75B2BC74BAA002EB115 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
 		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		D07025792BC937E600B6AF5C /* CoreDataItem.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */,
-			);
-			currentVersion = D070257A2BC937E600B6AF5C /* CoreDataItem.xcdatamodel */;
-			name = CoreDataItem.xcdatamodeld;
-			path = "/Volumes/Media/Xcode/Angela-Yu-iOS-Development-Bootcamp/Todoey/Todoey/Application/CoreDataItem.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+		D07025832BCA7CC900B6AF5C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D07025822BCA7CC900B6AF5C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
 		};
-/* End XCVersionGroup section */
+		D07025852BCA7CC900B6AF5C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D07025822BCA7CC900B6AF5C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D02AE72F2BC73707002EB115 /* Project object */;
 }
