@@ -25,6 +25,7 @@
 		D07025842BCA7CC900B6AF5C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D07025832BCA7CC900B6AF5C /* Realm */; };
 		D07025862BCA7CC900B6AF5C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D07025852BCA7CC900B6AF5C /* RealmSwift */; };
 		D07025882BCA7E7200B6AF5C /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07025872BCA7E7100B6AF5C /* RealmData.swift */; };
+		D070258A2BCBBA8200B6AF5C /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07025892BCBBA8200B6AF5C /* SwipeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D070257E2BCA612E00B6AF5C /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		D07025802BCA6F0A00B6AF5C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		D07025872BCA7E7100B6AF5C /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
+		D07025892BCBBA8200B6AF5C /* SwipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				D02AE75E2BC74BF8002EB115 /* Cells */,
 				D02AE73E2BC73707002EB115 /* HomeViewController.swift */,
+				D07025892BCBBA8200B6AF5C /* SwipeTableViewController.swift */,
 				D070257C2BCA60FD00B6AF5C /* CategoryViewController.swift */,
 			);
 			path = View;
@@ -226,6 +229,7 @@
 				D07025882BCA7E7200B6AF5C /* RealmData.swift in Sources */,
 				D02AE7622BC74CF6002EB115 /* HomeTableViewCell.swift in Sources */,
 				D070257F2BCA612E00B6AF5C /* CategoryViewModel.swift in Sources */,
+				D070258A2BCBBA8200B6AF5C /* SwipeTableViewController.swift in Sources */,
 				D02AE7582BC74426002EB115 /* Item.swift in Sources */,
 				D02AE73F2BC73707002EB115 /* HomeViewController.swift in Sources */,
 				D07025812BCA6F0A00B6AF5C /* CategoryTableViewCell.swift in Sources */,

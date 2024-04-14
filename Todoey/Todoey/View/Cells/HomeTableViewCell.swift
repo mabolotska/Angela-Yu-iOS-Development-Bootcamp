@@ -10,7 +10,7 @@ import UIKit
 class HomeTableViewCell: UITableViewCell {
     
     static let identifier = "HomeTableViewCell"
-    private let nameLabel = UILabel()
+    let nameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

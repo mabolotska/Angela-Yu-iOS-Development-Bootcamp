@@ -64,10 +64,10 @@ class ItemViewModel {
 //
 //    }
     func loadItems() {
-        items = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        items = selectedCategory?.items.sorted(byKeyPath: "title", ascending: false)
         onDataUpdate?()
     }
-//for core data
+// for core data
 //    func addItems(text: UITextField) {
 //        let newItem = Item(context: self.context)
 //        newItem.name = text.text
@@ -117,5 +117,18 @@ class ItemViewModel {
 
     func filterItems(with searchText: String) {
         items = realm.objects(Item.self).filter("title CONTAINS[cd] %@", searchText).sorted(byKeyPath: "date", ascending: true)
+    }
+
+    func deleteFromRealm(_ tableView: UITableView, forRowAt indexPath: IndexPath) {
+        guard let objectToDelete = items?[indexPath.row] else { return }
+        do {
+            try realm.write {
+                realm.delete(objectToDelete)
+            }
+            // Now update the table view
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } catch {
+            print("Error deleting object: \(error)")
+        }
     }
 }
