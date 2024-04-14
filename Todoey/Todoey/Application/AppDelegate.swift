@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1)
         
         let newNavBarAppearance = customNavBarAppearance()
-            
+
         let appearance = UINavigationBar.appearance()
         appearance.scrollEdgeAppearance = newNavBarAppearance
         appearance.compactAppearance = newNavBarAppearance
@@ -36,13 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Apply a red background.
         customNavBarAppearance.configureWithOpaqueBackground()
-        customNavBarAppearance.backgroundColor = .systemRed
-        
+       customNavBarAppearance.backgroundColor = .systemRed
+
         // Apply white colored normal and large titles.
         customNavBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         customNavBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
-
         // Apply white color to all the nav bar buttons.
         let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
         barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]

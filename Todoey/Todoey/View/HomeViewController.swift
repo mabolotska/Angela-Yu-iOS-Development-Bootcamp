@@ -17,7 +17,11 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // set navbar color in appdelegate
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.red // your colour here
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         view.backgroundColor = .white
         title = "Todoey"
         setViews()
@@ -32,6 +36,7 @@ class HomeViewController: UIViewController {
 
         }
         viewModel.loadItems()
+        searchBar.delegate = self
     }
     @objc func addButtonPressed() {
         var textField = UITextField()
@@ -45,7 +50,6 @@ class HomeViewController: UIViewController {
 
             
             self.viewModel.addItems(text: textField)
-
    // for core data         self.viewModel.saveItems()
         }
         
@@ -54,10 +58,7 @@ class HomeViewController: UIViewController {
             textField = alertTextField
             
         }
-        
-        
         alert.addAction(action)
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -88,23 +89,27 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items?.count ?? 1
+        // If there are no items, display one row for "No data" message
+        return viewModel.items?.count ?? 0 > 0 ? viewModel.items!.count : 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier) as? HomeTableViewCell else { return UITableViewCell() }
-        guard let item = viewModel.items?[indexPath.row] else { return cell }
-        cell.set(model: item)
-        guard let isDone = viewModel.items?[indexPath.row].isDone else { return cell}
-        cell.accessoryType = isDone ? .checkmark : .none
-     //   cell.accessoryType = viewModel.items?[indexPath.row].isDone ? .checkmark : .none
-         tableView.deselectRow(at: indexPath, animated: true)
-  //      cell.accessoryType = item.done ? .checkmark : .none
-        return cell
-    }
-  
+        guard let items = viewModel.items, !items.isEmpty else {
+                cell.nameLabel.text = "No data"
+                cell.accessoryType = .none
+                return cell
+            }
+
+            // If there are items, proceed as usual
+            let item = items[indexPath.row]
+            cell.set(model: item)
+            cell.accessoryType = item.isDone ? .checkmark : .none
+            tableView.deselectRow(at: indexPath, animated: true)
+            return cell
+        }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
   //      viewModel.items?[indexPath.row].isDone = !viewModel.items?[indexPath.row].isDone
@@ -121,54 +126,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     //    viewModel.saveItems()
         tableView.reloadData()
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+       
+            viewModel.deleteItem(atRow: indexPath.row)
+            tableView.reloadData()
+        }
+    }
 }
 
 
 //MARK: - Search bar methods
-
 extension HomeViewController: UISearchBarDelegate {
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//
-//        let request : NSFetchRequest<Item> = Item.fetchRequest()
-//
-//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//
-//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-//
-//        viewModel.loadItems(with: request, predicate: predicate)
-
-    }
-
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.isEmpty != nil {
-//            viewModel.loadItems()
-//
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//
-//        }
-//    }
-
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text! == "" {
-//            viewModel.loadItems()
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//        }
-//        else {
-//            viewModel.items = viewModel.items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "date", ascending: true)
-//            tableView.reloadData()
-//        }
-//    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            viewModel.loadItems() // Reload all items
-        } else {
-            viewModel.filterItems(with: searchText)
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            return
         }
+
+        viewModel.filterItems(with: searchText)
         tableView.reloadData()
     }
 }
